@@ -3,27 +3,27 @@
 <plist version="0.9">
 <dict>
 	<key>CFBundleIconFile</key>
-	<string>stratis.icns</string>
+	<string>visio.icns</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Stratis-Qt</string>
+	<string>Visio-Qt</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleExecutable</key>
-	<string>Stratis-Qt</string>
+	<string>Visio-Qt</string>
 	<key>CFBundleIdentifier</key>
-	<string>co.stratis.Stratis-Qt</string>
+	<string>co.visio.Visio-Qt</string>
         <key>CFBundleURLTypes</key>
         <array>
           <dict>
             <key>CFBundleTypeRole</key>
             <string>Editor</string>
             <key>CFBundleURLName</key>
-            <string>co.stratis.StratisPayment</string>
+            <string>co.visio.VisioPayment</string>
             <key>CFBundleURLSchemes</key>
             <array>
-              <string>stratis</string>
+              <string>visio</string>
             </array>
           </dict>
         </array>

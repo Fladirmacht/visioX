@@ -22,7 +22,7 @@ using namespace std;
 using namespace boost;
 
 #if defined(NDEBUG)
-# error "Stratis cannot be compiled without assertions."
+# error "Visio cannot be compiled without assertions."
 #endif
 
 //
@@ -39,7 +39,7 @@ CTxMemPool mempool;
 map<uint256, CBlockIndex*> mapBlockIndex;
 set<pair<COutPoint, unsigned int> > setStakeSeen;
 
-CBigNum bnProofOfStakeLimit(~uint256(0) >> 20);
+CBigNum bnProofOfStakeLimit(~uint256(0) >> 48);
 CBigNum bnProofOfStakeLimitV2(~uint256(0) >> 48);
 
 int nStakeMinConfirmations = 50;
@@ -77,7 +77,7 @@ map<uint256, set<uint256> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Stratis Signed Message:\n";
+const string strMessageMagic = "Visio Signed Message:\n";
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -996,7 +996,7 @@ static CBigNum GetProofOfStakeLimit(int nHeight)
 // miner's coin base reward
 int64_t GetProofOfWorkReward(int64_t nFees)
 {
-	int64_t PreMine = 98000000 * COIN;
+    int64_t PreMine = 62000000 * COIN;
     if(pindexBest->nHeight == 1){return PreMine;} else {return 4*COIN;}
 }
 
@@ -2649,7 +2649,7 @@ struct CImportingNow
 
 void ThreadImport(std::vector<boost::filesystem::path> vImportFiles)
 {
-    RenameThread("stratis-loadblk");
+    RenameThread("visio-loadblk");
 
     CImportingNow imp;
 

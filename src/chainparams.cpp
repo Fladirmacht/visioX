@@ -11,6 +11,8 @@
 
 #include <boost/assign/list_of.hpp>
 
+//#include <QDebug>
+
 using namespace boost::assign;
 
 struct SeedSpec6 {
@@ -76,8 +78,8 @@ public:
         pchMessageStart[2] = 0x22;
         pchMessageStart[3] = 0x05;
         vAlertPubKey = ParseHex("0486bce1bac0d543f104cbff2bd23680056a3b9ea05e1137d2ff90eeb5e08472eb500322593a2cb06fbf8297d7beb6cd30cb90f98153b5b7cce1493749e41e0284");
-        nDefaultPort = 16178;
-        nRPCPort = 16174;
+        nDefaultPort = 16778;
+        nRPCPort = 16774;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 20);
 
         // Build the genesis block. Note that the output of the genesis coinbase cannot
@@ -88,31 +90,37 @@ public:
         //    CTxIn(COutPoint(0000000000, 4294967295), coinbase 00012a24323020466562203230313420426974636f696e2041544d7320636f6d6520746f20555341)
         //    CTxOut(empty)
         //  vMerkleTree: 12630d16a9
-        const char* pszTimestamp = "http://www.theonion.com/article/olympics-head-priestess-slits-throat-official-rio--53466";
+        const char* pszTimestamp = "http://www.coindesk.com/can-blockchain-make-music-great/";
         std::vector<CTxIn> vin;
         vin.resize(1);
         vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         std::vector<CTxOut> vout;
         vout.resize(1);
         vout[0].SetEmpty();
-        CTransaction txNew(1, 1470467000, vin, vout, 0);
+        CTransaction txNew(1, 1487433648, vin, vout, 0);
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1470467000;
+        genesis.nTime    = 1487433648;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 1831645;
+        genesis.nNonce   = 1831677;
 
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("0x0000066e91e46e5a264d42c89e1204963b2ee6be230b443e9159020539d972af"));
-        assert(genesis.hashMerkleRoot == uint256("0x65a26bc20b0351aebf05829daefa8f7db2f800623439f3c114257c91447f1518"));
+//        cout << ":GEN HASH:";
+//        cout << "0x" << std::hex << hashGenesisBlock.GetHex();
+//        cout << ":MERKLE ROOT:";
+//        cout << "0x" << std::hex << genesis.hashMerkleRoot.GetHex();
+//        cout << "::";
 
-        vSeeds.push_back(CDNSSeedData("stratisplatform.com", "seed.stratisplatform.com"));
-        vSeeds.push_back(CDNSSeedData("cloudstratis.com", "seed.cloudstratis.com"));
+        assert(hashGenesisBlock == uint256("0x100944391b1edc3090600c5748a9373665500e80dc2a2e4b74e2168c3252ee47"));
+        assert(genesis.hashMerkleRoot == uint256("0x826dba90ed51474ae590c6a9de488a941ca82c1656c08bf1656a7ea2a8f6b1f3"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 63);
+        vSeeds.push_back(CDNSSeedData("94.102.50.82", "94.102.50.82"));
+        vSeeds.push_back(CDNSSeedData("visio.wtf", "seed.visio.wtf"));
+
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 71);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 125);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1, (63+128));
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xC2)(0x1E).convert_to_container<std::vector<unsigned char> >();
@@ -120,7 +128,7 @@ public:
 
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
-        nLastPOWBlock = 12500;
+        nLastPOWBlock = 10;
     }
 
     virtual const CBlock& GenesisBlock() const { return genesis; }
@@ -160,7 +168,10 @@ public:
         genesis.nNonce = 235708;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000161ec84df354cc488b6de9c2a24ba12046e6c0286a797d6a0c8a43f0515"));
+//        cout << ":GEN HASH:";
+//        cout << "0x" << std::hex << hashGenesisBlock.GetHex();
+//        cout << ":MERKLE ROOT:";
+        assert(hashGenesisBlock == uint256("0x2f647dd5a1a1eccec407aab62ba52cf07415502191db29c66d26d50042cbecc5"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -198,7 +209,10 @@ public:
         nDefaultPort = 18444;
         strDataDir = "regtest";
 //        MineGenesis(genesis);
-        assert(hashGenesisBlock == uint256("0x00000d97ffc6d5e27e78954c5bf9022b081177756488f44780b4f3c2210b1645"));
+//        cout << ":GEN HASH:";
+//        cout << "0x" << std::hex << hashGenesisBlock.GetHex();
+//        cout << ":MERKLE ROOT:";
+        assert(hashGenesisBlock == uint256("0xd45fed52d41c842c8bcb4dacdeecb1b1f0ca91ae0ff2100720690821dac3b579"));
 
         vSeeds.clear();  // Regtest mode doesn't have any DNS seeds.
     }
