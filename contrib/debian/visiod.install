@@ -1,0 +1,2 @@
+debian/bin/visiod usr/bin
+src/visiod usr/lib/visio

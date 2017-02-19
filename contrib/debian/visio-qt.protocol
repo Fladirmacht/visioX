@@ -1,6 +1,6 @@
 [Protocol]
-exec=stratis-qt '%u'
-protocol=stratis
+exec=visio-qt '%u'
+protocol=visio
 input=none
 output=none
 helper=true
