@@ -2,7 +2,7 @@ TEMPLATE = app
 TARGET = visio-qt
 VERSION = 2.0.0.2
 INCLUDEPATH += src src/json src/qt
-QT += network
+QT += network webkitwidgets
 DEFINES += ENABLE_WALLET
 DEFINES += BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
@@ -10,6 +10,7 @@ CONFIG += thread
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
+# webenginewidgets
     DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
 }
 
@@ -93,7 +94,9 @@ contains(BITCOIN_NEED_QT_PLUGINS, 1) {
 
 INCLUDEPATH += src/leveldb/include src/leveldb/helpers
 LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
-SOURCES += src/txdb-leveldb.cpp
+SOURCES += src/txdb-leveldb.cpp \
+    src/qt/forms/platformwindow.cpp \
+    src/qt/forms/platfrmwindow.cpp
 !win32 {
     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
     genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a
@@ -242,7 +245,9 @@ HEADERS += src/qt/bitcoingui.h \
     src/obj/x13hash/sph_shavite.h \
     src/obj/x13hash/sph_simd.h \
     src/obj/x13hash/sph_hamsi.h \
-    src/obj/x13hash/sph_fugue.h
+    src/obj/x13hash/sph_fugue.h \
+    src/qt/forms/platformwindow.h \
+    src/qt/forms/platfrmwindow.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/obj/x13hash/blake.c \
@@ -349,7 +354,9 @@ FORMS += \
     src/qt/forms/sendcoinsentry.ui \
     src/qt/forms/askpassphrasedialog.ui \
     src/qt/forms/rpcconsole.ui \
-    src/qt/forms/optionsdialog.ui
+    src/qt/forms/optionsdialog.ui \
+    src/qt/forms/platformwindow.ui \
+    src/qt/forms/platfrmwindow.ui
 
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h

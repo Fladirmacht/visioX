@@ -32,6 +32,8 @@
 #include "wallet.h"
 #include "init.h"
 #include "ui_interface.h"
+#include "forms/platformwindow.h"
+#include "forms/platfrmwindow.h"
 
 #ifdef Q_OS_MAC
 #include "macdockiconhandler.h"
@@ -57,6 +59,10 @@
 #include <QUrl>
 #include <QMimeData>
 #include <QStyle>
+//#include <QWebEngineView>
+//#include <QWebEngineSettings>
+#include <QWebSettings>
+#include <QtWebKitWidgets/QWebView>
 
 #include <iostream>
 
@@ -139,6 +145,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
 
     // Create status bar
     statusBar();
+//    QtWebEngine::initialize();
 
     // Status bar notification icons
     QWidget *frameBlocks = new QWidget();
@@ -259,6 +266,7 @@ void BitcoinGUI::createActions()
     addressBookAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
     tabGroup->addAction(addressBookAction);
 
+
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(gotoOverviewPage()));
     connect(receiveCoinsAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
@@ -302,6 +310,10 @@ void BitcoinGUI::createActions()
     openRPCConsoleAction = new QAction(tr("&Debug window"), this);
     openRPCConsoleAction->setToolTip(tr("Open debugging and diagnostic console"));
 
+    platformAction = new QAction(tr("&Visio Platform"), this);
+    platformAction->setToolTip(tr("Show Visio Platform window"));
+
+
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -314,6 +326,8 @@ void BitcoinGUI::createActions()
     connect(lockWalletAction, SIGNAL(triggered()), this, SLOT(lockWallet()));
     connect(signMessageAction, SIGNAL(triggered()), this, SLOT(gotoSignMessageTab()));
     connect(verifyMessageAction, SIGNAL(triggered()), this, SLOT(gotoVerifyMessageTab()));
+
+    connect(platformAction, SIGNAL(triggered()), this, SLOT(platformClicked()));
 }
 
 void BitcoinGUI::createMenuBar()
@@ -346,6 +360,9 @@ void BitcoinGUI::createMenuBar()
     help->addSeparator();
     help->addAction(aboutAction);
     help->addAction(aboutQtAction);
+
+    QMenu *platform =appMenuBar->addMenu(tr("&Platform"));
+    platform->addAction(platformAction);
 }
 
 static QWidget* makeToolBarSpacer()
@@ -527,6 +544,34 @@ void BitcoinGUI::aboutClicked()
     AboutDialog dlg;
     dlg.setModel(clientModel);
     dlg.exec();
+}
+
+void BitcoinGUI::platformClicked()
+{
+
+
+     PlatfrmWindow *dlg = new PlatfrmWindow;
+
+//     QSizePolicy sizePolicy;
+//        sizePolicy.setHorizontalPolicy(QSizePolicy::Expanding);
+//        sizePolicy.setVerticalPolicy(QSizePolicy::Expanding);
+
+//     QWebEngineView *view = new QWebEngineView(dlg);
+//     QWebSettings::globalSettings()->setAttribute(QWebSettings::PluginsEnabled, true);
+//     QWebSettings::globalSettings()->setAttribute(QWebSettings::JavascriptEnabled, true);
+//     QWebView view = dlg->webWiew();
+
+//     view->setSizePolicy(sizePolicy);
+
+//     view->settings()->setAttribute(QWebEngineSettings::PluginsEnabled,true);
+//     view->load(QUrl(QStringLiteral("http://purevidz.net/")));
+
+//     view->show();
+
+//     dlg->setCentralWidget(view);
+
+     dlg->setAttribute( Qt::WA_DeleteOnClose );
+     dlg->show();
 }
 
 void BitcoinGUI::setNumConnections(int count)
