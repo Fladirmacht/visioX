@@ -59,10 +59,19 @@
 #include <QUrl>
 #include <QMimeData>
 #include <QStyle>
-//#include <QWebEngineView>
-//#include <QWebEngineSettings>
-#include <QWebSettings>
-#include <QtWebKitWidgets/QWebView>
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+    #include <QWebEngineView>
+    #include <QWebEngineSettings>
+#endif
+
+
+#if QT_VERSION < QT_VERSION_CHECK(5, 6, 0)
+    #include <QtWebKitWidgets/QWebView>
+    #include <QWebFrame>
+    #include <QWebSettings>
+#endif
 
 #include <iostream>
 
@@ -552,24 +561,28 @@ void BitcoinGUI::platformClicked()
 
      PlatfrmWindow *dlg = new PlatfrmWindow;
 
-//     QSizePolicy sizePolicy;
-//        sizePolicy.setHorizontalPolicy(QSizePolicy::Expanding);
-//        sizePolicy.setVerticalPolicy(QSizePolicy::Expanding);
+     QSizePolicy sizePolicy;
+        sizePolicy.setHorizontalPolicy(QSizePolicy::Expanding);
+        sizePolicy.setVerticalPolicy(QSizePolicy::Expanding);
 
-//     QWebEngineView *view = new QWebEngineView(dlg);
-//     QWebSettings::globalSettings()->setAttribute(QWebSettings::PluginsEnabled, true);
-//     QWebSettings::globalSettings()->setAttribute(QWebSettings::JavascriptEnabled, true);
-//     QWebView view = dlg->webWiew();
 
-//     view->setSizePolicy(sizePolicy);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+     QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+     QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+     QWebEngineView *view = new QWebEngineView(dlg);
 
-//     view->settings()->setAttribute(QWebEngineSettings::PluginsEnabled,true);
-//     view->load(QUrl(QStringLiteral("http://purevidz.net/")));
+#endif
+#if QT_VERSION < QT_VERSION_CHECK(5, 6, 0)
+       QWebSettings::globalSettings()->setAttribute(QWebSettings::PluginsEnabled, true);
+       QWebSettings::globalSettings()->setAttribute(QWebSettings::JavascriptEnabled, true);
+       QWebView *view = new QWebView(dlg);
+       view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal,Qt::ScrollBarAlwaysOff);
 
-//     view->show();
-
-//     dlg->setCentralWidget(view);
-
+#endif
+     view->setSizePolicy(sizePolicy);
+     view->load(QUrl("http://purevidz.net"));
+     view->show();
+     dlg->setCentralWidget(view);
      dlg->setAttribute( Qt::WA_DeleteOnClose );
      dlg->show();
 }

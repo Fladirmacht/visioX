@@ -2,7 +2,7 @@ TEMPLATE = app
 TARGET = visio-qt
 VERSION = 2.0.0.2
 INCLUDEPATH += src src/json src/qt
-QT += network webkitwidgets
+QT += network
 DEFINES += ENABLE_WALLET
 DEFINES += BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
@@ -10,10 +10,15 @@ CONFIG += thread
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
-# webenginewidgets
+ webenginewidgets
     DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
 }
-
+equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 6) {
+    QT += webkitwidgets
+}
+equals(QT_MAJOR_VERSION, 5):greaterThan(QT_MINOR_VERSION, 5) {
+    QT += webenginewidgets
+}
 # for boost 1.37, add -mt to the boost libraries
 # use: qmake BOOST_LIB_SUFFIX=-mt
 # for boost thread win32 with _win32 sufix
