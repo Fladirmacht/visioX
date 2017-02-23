@@ -117,8 +117,9 @@ public:
         assert(hashGenesisBlock == uint256("0x100944391b1edc3090600c5748a9373665500e80dc2a2e4b74e2168c3252ee47"));
         assert(genesis.hashMerkleRoot == uint256("0x826dba90ed51474ae590c6a9de488a941ca82c1656c08bf1656a7ea2a8f6b1f3"));
 
+        vSeeds.push_back(CDNSSeedData("visio.wtf", "visio.wtf"));
         vSeeds.push_back(CDNSSeedData("94.102.50.82", "94.102.50.82"));
-        vSeeds.push_back(CDNSSeedData("visio.wtf", "seed.visio.wtf"));
+        vSeeds.push_back(CDNSSeedData("185.145.131.149", "185.145.131.149"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 71);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 125);
@@ -128,7 +129,7 @@ public:
 
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
-        nLastPOWBlock = 5000;
+        nLastPOWBlock = 15000;
     }
 
     virtual const CBlock& GenesisBlock() const { return genesis; }

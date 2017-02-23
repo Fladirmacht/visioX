@@ -580,7 +580,7 @@ void BitcoinGUI::platformClicked()
 
 #endif
      view->setSizePolicy(sizePolicy);
-     view->load(QUrl("http://purevidz.net"));
+     view->load(QUrl("http://visio.wtf"));
      view->show();
      dlg->setCentralWidget(view);
      dlg->setAttribute( Qt::WA_DeleteOnClose );
