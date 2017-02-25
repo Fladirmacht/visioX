@@ -129,7 +129,7 @@ public:
 
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
-        nLastPOWBlock = 25000;
+        nLastPOWBlock = 250000;
     }
 
     virtual const CBlock& GenesisBlock() const { return genesis; }

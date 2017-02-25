@@ -22,12 +22,17 @@ QT_BEGIN_NAMESPACE
 class QTimer;
 QT_END_NAMESPACE
 
+static const unsigned int TX_TYPE_DATAMESAGE = 1;
+static const unsigned int TX_DATAMESSAGE_FEE = 100000000;
+
 class SendCoinsRecipient
 {
 public:
     QString address;
     QString label;
     qint64 amount;
+    QString datamessage;
+    qint8 txtype;
 };
 
 /** Interface to Bitcoin wallet from Qt view code. */

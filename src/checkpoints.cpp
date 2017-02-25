@@ -27,15 +27,15 @@ namespace Checkpoints
     //
     static MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
-        (  0,     uint256("0x0000066e91e46e5a264d42c89e1204963b2ee6be230b443e9159020539d972af") )
-        (  2,     uint256("0xbca5936f638181e74a5f1e9999c95b0ce77da48c2688399e72bcc53a00c61eff") ) // Premine
-        ( 50,     uint256("0x0353b43f4ce80bf24578e7c0141d90d7962fb3a4b4b4e5a17925ca95e943b816") )
-        ( 100,    uint256("0x688468a8aa48cd1c2197e42e7d8acd42760b7e2ac4bcab9d18ac149a673e16f6") )
-        ( 150,    uint256("0xe4ae9663519abec15e28f68bdb2cb89a739aee22f53d1573048d69141db6ee5d") )
-        ( 127500, uint256("0x4773ca7512489df22de03aa03938412fab5b46154b05df004b97bcbeaa184078") )
-        ( 128943, uint256("0x36bcaa27a53d3adf22b2064150a297adb02ac39c24263a5ceb73856832d49679") ) 
-        ( 136601, uint256("0xf5c5210c55ff1ef9c04715420a82728e1647f3473e31dc478b3745a97b4a6d10") ) // Hardfork to v2.0.0
-        ( 170000, uint256("0x22b10952e0cf7e85bfc81c38f1490708f195bff34d2951d193cc20e9ca1fc9d5") )
+        (  0,     uint256("0x100944391b1edc3090600c5748a9373665500e80dc2a2e4b74e2168c3252ee47") )
+        (  2,     uint256("0x098fa0d430756621e3b23791bb99375fc5d79315ca345c8eef1a69330c56750e") ) // Premine
+        ( 50,     uint256("0x1594c1e798b00785772c947672bf10b82f4196e5da8940cedb52a900120bf728") )
+        ( 100,    uint256("0x98ae397ba57b54b1b2bf89a63b63bf27f3f15c150eda7aba1b7eff652ab1a78d") )
+        ( 150,    uint256("0x4184c1c4aa0c242673f9b82ba70df4fcc1c72e587d78f0fa52c019c066967f6a") )
+        ( 1000,   uint256("0xbb784863aeec0d2427d081326305c8e9987a9fed0d678cfdbd8ecc683caf622f") )
+        ( 2000,   uint256("0x3172bd74e9a0bea9fdac59a95588b1ba7904b389d8b541fc25eeb1f13738137a") )
+        ( 5000,   uint256("0x302626b8a362826614b93ba89993071003bf0e220d2f5c9c3062b8a5fad5de49") )
+        ( 6758,   uint256("0x125d4fe9cf6775a1ff75b8b716269b4dad6b9930e48a51b3e6ddaa4351a7cad9") ) // Hardfork to v2.0.0 - hash 4kB
     ;
 
     // TestNet has no checkpoints
@@ -47,9 +47,9 @@ namespace Checkpoints
 
         MapCheckpoints::const_iterator i = checkpoints.find(nHeight);
         if (i == checkpoints.end()) return true;
-//        return hash == i->second;
+        return hash == i->second;
         //Sindren
-        return true;
+//        return true;
     }
 
     int GetTotalBlocksEstimate()
@@ -59,8 +59,8 @@ namespace Checkpoints
         if (checkpoints.empty())
             return 0;
         //Sindren
-//        return checkpoints.rbegin()->first;
-        return 0;
+        return checkpoints.rbegin()->first;
+//        return 0;
     }
 
     CBlockIndex* GetLastCheckpoint(const std::map<uint256, CBlockIndex*>& mapBlockIndex)
@@ -73,8 +73,8 @@ namespace Checkpoints
             std::map<uint256, CBlockIndex*>::const_iterator t = mapBlockIndex.find(hash);
             if (t != mapBlockIndex.end())
                 //Sindren
-//                return t->second;
-                return NULL;
+                return t->second;
+//                return NULL;
         }
         return NULL;
     }

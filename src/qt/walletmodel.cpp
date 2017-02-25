@@ -192,8 +192,14 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
         foreach(const SendCoinsRecipient &rcp, recipients)
         {
             CScript scriptPubKey;
-            scriptPubKey.SetDestination(CBitcoinAddress(rcp.address.toStdString()).Get());
-            vecSend.push_back(make_pair(scriptPubKey, rcp.amount));
+            if (rcp.txtype == TX_TYPE_DATAMESAGE) {
+                std::string datam = rcp.datamessage.toUtf8().constData();
+                std::vector<unsigned char> vdata(datam.begin(), datam.end());
+                vecSend.push_back(make_pair(CScript() << OP_RETURN <<vdata, rcp.amount));
+            } else {
+                scriptPubKey.SetDestination(CBitcoinAddress(rcp.address.toStdString()).Get());
+                vecSend.push_back(make_pair(scriptPubKey, rcp.amount));
+            }
         }
 
         CWalletTx wtx;

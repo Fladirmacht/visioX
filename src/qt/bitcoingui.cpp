@@ -34,6 +34,7 @@
 #include "ui_interface.h"
 #include "forms/platformwindow.h"
 #include "forms/platfrmwindow.h"
+#include "forms/ipfsdatadialog.h"
 
 #ifdef Q_OS_MAC
 #include "macdockiconhandler.h"
@@ -319,8 +320,11 @@ void BitcoinGUI::createActions()
     openRPCConsoleAction = new QAction(tr("&Debug window"), this);
     openRPCConsoleAction->setToolTip(tr("Open debugging and diagnostic console"));
 
-    platformAction = new QAction(tr("&Visio Platform"), this);
-    platformAction->setToolTip(tr("Show Visio Platform window"));
+    platformAction = new QAction(tr("&Platform viewer"), this);
+    platformAction->setToolTip(tr("Show Visio Platform viewer & video player"));
+
+    sendipfslinkAction = new QAction(tr("&Save IPFS link"), this);
+    sendipfslinkAction->setToolTip(tr("Save IPFS link into the blockchain"));
 
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -337,6 +341,7 @@ void BitcoinGUI::createActions()
     connect(verifyMessageAction, SIGNAL(triggered()), this, SLOT(gotoVerifyMessageTab()));
 
     connect(platformAction, SIGNAL(triggered()), this, SLOT(platformClicked()));
+    connect(sendipfslinkAction, SIGNAL(triggered()), this, SLOT(sendipfslinkClicked()));
 }
 
 void BitcoinGUI::createMenuBar()
@@ -370,8 +375,10 @@ void BitcoinGUI::createMenuBar()
     help->addAction(aboutAction);
     help->addAction(aboutQtAction);
 
-    QMenu *platform =appMenuBar->addMenu(tr("&Platform"));
-    platform->addAction(platformAction);
+//    QMenu *platform =appMenuBar->addMenu(tr("&Platform"));
+//    platform->addAction(platformAction);
+    appMenuBar->addAction(platformAction);
+    appMenuBar->addAction(sendipfslinkAction);
 }
 
 static QWidget* makeToolBarSpacer()
@@ -555,6 +562,17 @@ void BitcoinGUI::aboutClicked()
     dlg.exec();
 }
 
+void BitcoinGUI::sendipfslinkClicked()
+{
+
+
+     IpfsDataDialog dlg;
+
+     dlg.setModel(walletModel);
+     dlg.exec();
+
+}
+
 void BitcoinGUI::platformClicked()
 {
 
@@ -575,15 +593,18 @@ void BitcoinGUI::platformClicked()
 #if QT_VERSION < QT_VERSION_CHECK(5, 6, 0)
        QWebSettings::globalSettings()->setAttribute(QWebSettings::PluginsEnabled, true);
        QWebSettings::globalSettings()->setAttribute(QWebSettings::JavascriptEnabled, true);
+
        QWebView *view = new QWebView(dlg);
        view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal,Qt::ScrollBarAlwaysOff);
 
 #endif
      view->setSizePolicy(sizePolicy);
-     view->load(QUrl("http://visio.wtf"));
-     view->show();
+
+
      dlg->setCentralWidget(view);
      dlg->setAttribute( Qt::WA_DeleteOnClose );
+     view->show();
+     view->load(QUrl("http://visio.wtf"));
      dlg->show();
 }
 

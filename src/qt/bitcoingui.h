@@ -95,6 +95,7 @@ private:
     QAction *aboutQtAction;
     QAction *openRPCConsoleAction;
     QAction *platformAction;
+    QAction *sendipfslinkAction;
 
     QSystemTrayIcon *trayIcon;
     Notificator *notificator;
@@ -169,6 +170,7 @@ private slots:
     void aboutClicked();
     /** Shou Platform window */
     void platformClicked();
+    void sendipfslinkClicked();
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
