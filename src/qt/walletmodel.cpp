@@ -194,7 +194,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
             CScript scriptPubKey;
 
             if (rcp.txtype == TX_TYPE_DATAMESAGE) {
-                QString ds = "{\"recipient\":\""+rcp.address+"\",\"datamessage\":\""+rcp.datamessage+"\"}";  //TODO encode to better format
+                QString ds = "{\"recipient\":\""+rcp.address+"\",\"encoding\":\"text-utf8\",\"datamessage\":\""+rcp.datamessage+"\"}";  //TODO encode to better format
 
                 std::string datam = ds.toUtf8().constData();
                 std::vector<unsigned char> vdata(datam.begin(), datam.end());
