@@ -323,8 +323,8 @@ void BitcoinGUI::createActions()
     platformAction = new QAction(tr("&Platform viewer"), this);
     platformAction->setToolTip(tr("Show Visio Platform viewer & video player"));
 
-    sendipfslinkAction = new QAction(tr("&Save IPFS link"), this);
-    sendipfslinkAction->setToolTip(tr("Save IPFS link into the blockchain"));
+    sendipfslinkAction = new QAction(tr("&Send IPFS link"), this);
+    sendipfslinkAction->setToolTip(tr("Send & save IPFS link into the blockchain"));
 
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
