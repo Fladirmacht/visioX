@@ -168,9 +168,9 @@ private slots:
     void optionsClicked();
     /** Show about dialog */
     void aboutClicked();
-    /** Shou Platform window */
-    void platformClicked();
-    void sendipfslinkClicked();
+//    /** Shou Platform window */
+//    void platformClicked();
+//    void sendipfslinkClicked();
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);

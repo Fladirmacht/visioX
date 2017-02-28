@@ -32,9 +32,7 @@
 #include "wallet.h"
 #include "init.h"
 #include "ui_interface.h"
-#include "forms/platformwindow.h"
-#include "forms/platfrmwindow.h"
-#include "forms/ipfsdatadialog.h"
+
 
 #ifdef Q_OS_MAC
 #include "macdockiconhandler.h"
@@ -320,11 +318,11 @@ void BitcoinGUI::createActions()
     openRPCConsoleAction = new QAction(tr("&Debug window"), this);
     openRPCConsoleAction->setToolTip(tr("Open debugging and diagnostic console"));
 
-    platformAction = new QAction(tr("&Platform viewer"), this);
-    platformAction->setToolTip(tr("Show Visio Platform viewer & video player"));
+//    platformAction = new QAction(tr("&Platform viewer"), this);
+//    platformAction->setToolTip(tr("Show Visio Platform viewer & video player"));
 
-    sendipfslinkAction = new QAction(tr("&Send IPFS link"), this);
-    sendipfslinkAction->setToolTip(tr("Send & save IPFS link into the blockchain"));
+//    sendipfslinkAction = new QAction(tr("&Send IPFS link"), this);
+//    sendipfslinkAction->setToolTip(tr("Send & save IPFS link into the blockchain"));
 
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -562,51 +560,9 @@ void BitcoinGUI::aboutClicked()
     dlg.exec();
 }
 
-void BitcoinGUI::sendipfslinkClicked()
-{
 
 
-     IpfsDataDialog dlg;
 
-     dlg.setModel(walletModel);
-     dlg.exec();
-
-}
-
-void BitcoinGUI::platformClicked()
-{
-
-
-     PlatfrmWindow *dlg = new PlatfrmWindow;
-
-     QSizePolicy sizePolicy;
-        sizePolicy.setHorizontalPolicy(QSizePolicy::Expanding);
-        sizePolicy.setVerticalPolicy(QSizePolicy::Expanding);
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
-     QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
-     QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-     QWebEngineView *view = new QWebEngineView(dlg);
-
-#endif
-#if QT_VERSION < QT_VERSION_CHECK(5, 6, 0)
-       QWebSettings::globalSettings()->setAttribute(QWebSettings::PluginsEnabled, true);
-       QWebSettings::globalSettings()->setAttribute(QWebSettings::JavascriptEnabled, true);
-
-       QWebView *view = new QWebView(dlg);
-       view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal,Qt::ScrollBarAlwaysOff);
-
-#endif
-     view->setSizePolicy(sizePolicy);
-
-
-     dlg->setCentralWidget(view);
-     dlg->setAttribute( Qt::WA_DeleteOnClose );
-     view->show();
-     view->load(QUrl("http://visio.wtf"));
-     dlg->show();
-}
 
 void BitcoinGUI::setNumConnections(int count)
 {

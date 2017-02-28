@@ -99,10 +99,7 @@ contains(BITCOIN_NEED_QT_PLUGINS, 1) {
 
 INCLUDEPATH += src/leveldb/include src/leveldb/helpers
 LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
-SOURCES += src/txdb-leveldb.cpp \
-    src/qt/forms/platformwindow.cpp \
-    src/qt/forms/platfrmwindow.cpp \
-    src/qt/forms/ipfsdatadialog.cpp
+SOURCES += src/txdb-leveldb.cpp
 !win32 {
     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
     genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a
@@ -251,10 +248,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/obj/x13hash/sph_shavite.h \
     src/obj/x13hash/sph_simd.h \
     src/obj/x13hash/sph_hamsi.h \
-    src/obj/x13hash/sph_fugue.h \
-    src/qt/forms/platformwindow.h \
-    src/qt/forms/platfrmwindow.h \
-    src/qt/forms/ipfsdatadialog.h
+    src/obj/x13hash/sph_fugue.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/obj/x13hash/blake.c \
@@ -361,10 +355,7 @@ FORMS += \
     src/qt/forms/sendcoinsentry.ui \
     src/qt/forms/askpassphrasedialog.ui \
     src/qt/forms/rpcconsole.ui \
-    src/qt/forms/optionsdialog.ui \
-    src/qt/forms/platformwindow.ui \
-    src/qt/forms/platfrmwindow.ui \
-    src/qt/forms/ipfsdatadialog.ui
+    src/qt/forms/optionsdialog.ui
 
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h
