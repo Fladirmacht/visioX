@@ -340,8 +340,8 @@ void BitcoinGUI::createActions()
     connect(signMessageAction, SIGNAL(triggered()), this, SLOT(gotoSignMessageTab()));
     connect(verifyMessageAction, SIGNAL(triggered()), this, SLOT(gotoVerifyMessageTab()));
 
-    connect(platformAction, SIGNAL(triggered()), this, SLOT(platformClicked()));
-    connect(sendipfslinkAction, SIGNAL(triggered()), this, SLOT(sendipfslinkClicked()));
+//    connect(platformAction, SIGNAL(triggered()), this, SLOT(platformClicked()));
+//    connect(sendipfslinkAction, SIGNAL(triggered()), this, SLOT(sendipfslinkClicked()));
 }
 
 void BitcoinGUI::createMenuBar()
@@ -377,8 +377,8 @@ void BitcoinGUI::createMenuBar()
 
 //    QMenu *platform =appMenuBar->addMenu(tr("&Platform"));
 //    platform->addAction(platformAction);
-    appMenuBar->addAction(platformAction);
-    appMenuBar->addAction(sendipfslinkAction);
+//    appMenuBar->addAction(platformAction);
+//    appMenuBar->addAction(sendipfslinkAction);
 }
 
 static QWidget* makeToolBarSpacer()
@@ -400,7 +400,7 @@ void BitcoinGUI::createToolBars()
         QWidget* header = new QWidget();
         header->setMinimumSize(160, 116);
         header->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        header->setStyleSheet("QWidget { background-color: rgb(24,26,30); background-repeat: no-repeat; background-image: url(:/images/header); background-position: center center; }");
+        header->setStyleSheet("QWidget { background-color: rgb(30,32,36); background-repeat: no-repeat; background-image: url(:/images/header); background-position: center center; }");
         toolbar->addWidget(header);
         toolbar->addWidget(makeToolBarSpacer());
     }
