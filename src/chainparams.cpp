@@ -117,7 +117,10 @@ public:
         assert(hashGenesisBlock == uint256("0x100944391b1edc3090600c5748a9373665500e80dc2a2e4b74e2168c3252ee47"));
         assert(genesis.hashMerkleRoot == uint256("0x826dba90ed51474ae590c6a9de488a941ca82c1656c08bf1656a7ea2a8f6b1f3"));
 
-        vSeeds.push_back(CDNSSeedData("visio.wtf", "visio.wtf"));
+        vSeeds.push_back(CDNSSeedData("seed.visio.wtf", "seed.visio.wtf"));
+        vSeeds.push_back(CDNSSeedData("seeda.visio.wtf", "seeda.visio.wtf"));
+        vSeeds.push_back(CDNSSeedData("seedb.visio.wtf", "seedb.visio.wtf"));
+        vSeeds.push_back(CDNSSeedData("seedc.visio.wtf", "seedc.visio.wtf"));
         vSeeds.push_back(CDNSSeedData("94.102.50.82", "94.102.50.82"));
         vSeeds.push_back(CDNSSeedData("185.145.131.149", "185.145.131.149"));
 
