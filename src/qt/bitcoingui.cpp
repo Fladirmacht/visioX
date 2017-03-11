@@ -340,8 +340,8 @@ void BitcoinGUI::createActions()
     connect(signMessageAction, SIGNAL(triggered()), this, SLOT(gotoSignMessageTab()));
     connect(verifyMessageAction, SIGNAL(triggered()), this, SLOT(gotoVerifyMessageTab()));
 
-//    connect(platformAction, SIGNAL(triggered()), this, SLOT(platformClicked()));
-//    connect(sendipfslinkAction, SIGNAL(triggered()), this, SLOT(sendipfslinkClicked()));
+    connect(platformAction, SIGNAL(triggered()), this, SLOT(platformClicked()));
+    connect(sendipfslinkAction, SIGNAL(triggered()), this, SLOT(sendipfslinkClicked()));
 }
 
 void BitcoinGUI::createMenuBar()
@@ -377,7 +377,7 @@ void BitcoinGUI::createMenuBar()
 
 //    QMenu *platform =appMenuBar->addMenu(tr("&Platform"));
 //    platform->addAction(platformAction);
-//    appMenuBar->addAction(platformAction);
+    appMenuBar->addAction(platformAction);
 //    appMenuBar->addAction(sendipfslinkAction);
 }
 
@@ -587,6 +587,8 @@ void BitcoinGUI::platformClicked()
 #if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
      QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
      QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+//     QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::WebGLEnabled, true);
+     QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
      QWebEngineView *view = new QWebEngineView(dlg);
 
 #endif
@@ -604,7 +606,7 @@ void BitcoinGUI::platformClicked()
      dlg->setCentralWidget(view);
      dlg->setAttribute( Qt::WA_DeleteOnClose );
      view->show();
-     view->load(QUrl("http://visio.wtf"));
+     view->load(QUrl("https://www.visio.wtf"));
      dlg->show();
 }
 
