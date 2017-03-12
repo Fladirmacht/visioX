@@ -375,9 +375,9 @@ void BitcoinGUI::createMenuBar()
     help->addAction(aboutAction);
     help->addAction(aboutQtAction);
 
-//    QMenu *platform =appMenuBar->addMenu(tr("&Platform"));
-//    platform->addAction(platformAction);
-    appMenuBar->addAction(platformAction);
+    QMenu *platform =appMenuBar->addMenu(tr("&Platform"));
+    platform->addAction(platformAction);
+//    appMenuBar->addAction(platformAction);
 //    appMenuBar->addAction(sendipfslinkAction);
 }
 
