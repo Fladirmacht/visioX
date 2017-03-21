@@ -10,11 +10,11 @@ CONFIG += thread
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
- webenginewidgets
+# webenginewidgets
     DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
 }
 equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 6) {
-    QT += webkitwidgets
+    QT += webkit webkitwidgets
 }
 equals(QT_MAJOR_VERSION, 5):greaterThan(QT_MINOR_VERSION, 5) {
     QT += webenginewidgets

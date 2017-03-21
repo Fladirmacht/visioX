@@ -323,8 +323,8 @@ void BitcoinGUI::createActions()
     platformAction = new QAction(tr("&Platform viewer"), this);
     platformAction->setToolTip(tr("Show Visio Platform viewer & video player"));
 
-    sendipfslinkAction = new QAction(tr("&Send IPFS link"), this);
-    sendipfslinkAction->setToolTip(tr("Send & save IPFS link into the blockchain"));
+    sendipfslinkAction = new QAction(tr("&Send data"), this);
+    sendipfslinkAction->setToolTip(tr("Send & save data into the blockchain"));
 
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -378,7 +378,7 @@ void BitcoinGUI::createMenuBar()
     QMenu *platform =appMenuBar->addMenu(tr("&Platform"));
     platform->addAction(platformAction);
 //    appMenuBar->addAction(platformAction);
-//    appMenuBar->addAction(sendipfslinkAction);
+    platform->addAction(sendipfslinkAction);
 }
 
 static QWidget* makeToolBarSpacer()
